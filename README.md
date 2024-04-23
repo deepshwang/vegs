@@ -36,8 +36,12 @@
 <img src="./assets/teaser.gif" alt="teaser.gif" width="1000"/> <br>
 <b>Our method aligns and flattens Gaussian covariances to scene surfaces estimated from </br> monocular normal estimations.</b>
 
+<br>
+
+<br>
+
 <img src="./assets/dynamic.gif" alt="dynamic.gif" width="410"/><img src="./assets/object_relocation.gif" alt="object_relocation.gif" width="410"/> <br>
-<b>Our method jointly reconstructs static scene with dynamic object such as cars. Reconstructed dynamics object can then be relocated arbitrarily.</b>
+<b>Our method jointly reconstructs static scene with dynamic object such as cars, which can then be relocated arbitrarily.</b>
 
 </div>
 
