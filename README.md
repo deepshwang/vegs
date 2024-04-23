@@ -113,7 +113,7 @@ KITTI-360
 ```
 **Since each sequence is too large to construct as a single scene model, we use scene segment pre-divided by frames, `start_frame` and `end_frame`.**
 
-### 2. Prepare 3D points triangulated from training images and known camera poses using COLMAP.
+### 2. Triangulate 3D points from training images and known camera poses using COLMAP.
 In addition to the LiDAR map, we use points triangulated from training images. To prepare the points, run the following command. (COLMAP must be installed to run)
 ```
 python triangulate.py --data_dir ${KITTI360_DIR}
