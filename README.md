@@ -20,13 +20,13 @@
 <br>
 
 <font size="6">
-KAIST<sup>1</sup>, Ghent University<sup>2</sup>
+<sup>1</sup>KAIST, <sup>2</sup>Ghent University
 </font>
 
 <br>
 
 <font size="4">
-| <a href="https://vegs.github.io">Project Page</a> | <a href="https://arxiv.org/abs/2311.12775">arXiv</a> | <a href="https://github.com/deepshwang/vegs">Code</a>
+| <a href="https://vegs.github.io">Project Page</a> | <a href="https://arxiv.org/abs/2311.12775">arXiv</a> | <a href="https://github.com/deepshwang/vegs">Code</a> |
 </font>
 
 <br>
@@ -118,7 +118,11 @@ python triangulate.py --data_dir ${KITTI360_DIR}
 where `${KITTI360_DIR}` is the KITTI-360 data directory. By default, the script will triangulate for all scene sgements in data, and save the results in `data_3d_colmap` and `data_3d_colmap_processed` folder under the KITTI-360 data directory. 
 
 ### 3. Prepare Monocular Surface Normal Estimations
+We use <a href="https://github.com/EPFL-VILAB/omnidata">omnidata</a> for monocular surface normal estimation. Please download and place the pretrained model in `omnidata/pretrained_models/omnidata_dpt_normal_v2.ckpt`. Running the following scripts will save monocular surface normal estimations in `data_2d_normal_omnidata_all` under the KITTI-360 data directory. To prepare the data, run
 
+```
+bash bash_scripts/normal_preprocess_kitti360.sh ${GPU_NUM} ${KITTI360_DIR}
+```
 
 ### 4. Prepare LoRA training images
 To prepare dataset for LoRA training, run the following command.
@@ -135,7 +139,7 @@ By default, this will prepare images for scene segments listed in `lora/data/kit
 ## Training
 
 ### 0. Fine-tune Stable-Diffusion model with LoRA.
-To train Stable-Diffusion model with LoRA, run the following command.
+We use <a href="https://github.com/huggingface/diffusers">diffusers</a> to train Stable-Diffusion with LoRA. To train, run the following command.
 
 ```
 bash bash_scripts/lora_train_kitti360.sh ${GPU_NUM}

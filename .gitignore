@@ -11,3 +11,4 @@ lora/models
 lora/data/kitti360/*
 !lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt
 @eaDir
+omnidata/pretrained_models/*
