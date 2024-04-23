@@ -1,0 +1,13 @@
+*.pyc
+.vscode
+.cache
+output
+build
+diff_rasterization/diff_rast.egg-info
+diff_rasterization/dist
+tensorboard_3d
+screenshots
+lora/models
+lora/data/kitti360/*
+!lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt
+@eaDir
