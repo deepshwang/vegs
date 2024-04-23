@@ -36,7 +36,7 @@ KAIST<sup>1</sup>, Ghent University<sup>2</sup>
 <img src="./assets/teaser.gif" alt="teaser.gif" width="1000"/> <br>
 <b>Our method aligns and flattens Gaussian covariances to scene surfaces estimated from </br> monocular normal estimations.</b>
 
-<img src="./assets/dynamic.gif" alt="dynamic.gif" width="450"/><img src="./assets/object_relocation.gif" alt="object_relocation.gif" width="450"/> <br>
+<img src="./assets/dynamic.gif" alt="dynamic.gif" width="400"/><img src="./assets/object_relocation.gif" alt="object_relocation.gif" width="400"/> <br>
 <b>Our method jointly reconstructs dynamic object such as cars. Reconstructed dynamic object can then be arbitrarily relocated.</b>
 
 </div>
