@@ -548,13 +548,6 @@ def training_report(iteration, testing_iterations, scene : Scene, all_bboxes, ga
                         viz_dirs[viz_type] = viz_dir
                         os.makedirs(viz_dir, exist_ok=True)
 
-                    for cam_aug_param in cam_aug_params:
-                        viz_dir_key = f"Rx{cam_aug_param[0]}_Ry{cam_aug_param[1]}_Rz{cam_aug_param[2]}_tx{cam_aug_param[3]}_ty{cam_aug_param[4]}_tz{cam_aug_param[5]}"
-                        viz_dir = os.path.join(save_dir, 'results', config['name'], 'render_rgb_aug', str(iteration), viz_dir_key)
-                        viz_dirs['render_rgb_aug'][viz_dir_key] = viz_dir
-                        os.makedirs(viz_dir, exist_ok=True)
-
-
                 pbar = tqdm(config['cameras'], total=len(config['cameras']))
                 pbar.set_description(f"Rendering {config['name']} images")
                 for idx, viewpoint in tqdm(enumerate(config['cameras']), total=len(config['cameras'])):
@@ -608,7 +601,8 @@ def training_report(iteration, testing_iterations, scene : Scene, all_bboxes, ga
                 print("\n[ITER {}] Evaluating {}: L1 {} PSNR {}".format(iteration, config['name'], l1_test, psnr_test))
                 wandb.log({ config['name'] + '/loss_viewpoint - l1_loss': l1_test, 
                             config['name'] + '/loss_viewpoint - psnr': psnr_test}, 
-                            step=iteration)                
+                            step=iteration) 
+        import pdb; pdb.set_trace()               
         
         torch.cuda.empty_cache()
 

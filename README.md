@@ -170,7 +170,7 @@ Trained model and images rendered on conventional and extrapolated cameras will 
 
 ## Video Rendering
 
-We also provide a script to render and save from training camera trajectories, along with novel cameras interpolated between adjacent pairs of training cameras for smooth video rendering. Run the following command.
+We also provide a script to render and save from camera trajectories, along with novel cameras interpolated between adjacent pairs of the cameras within the trajectory for smooth video rendering.
 ```
 bash bash_scripts/render_video.sh ${GPU_NUM} ${MODEL_PATH}
 ```

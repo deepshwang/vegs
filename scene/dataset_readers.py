@@ -634,12 +634,7 @@ def readKITTI360SceneInfo(path, cfg_box, eval=True, seq="2013_05_28_drive_0009_s
         disp_name = os.path.join("data_3d_semantics", "train", seq, "gaussians", dyn_ply_name)
         print(f"Setting up {disp_name}. Will happen only the first time you open the scene / frame segement.")
         stored_pcd = storeDynamicPly(dyn_ply_path, dyn_pcd.points, np.uint8(dyn_pcd.colors * 255), dyn_pcd.instances, dyn_pcd.timestamps)
-    # try:
-    #     pcd = fetchPlyKITTI360(ply_path, visible_only=False, exclude_lidar=False, exclude_colmap=True)
-    #     dyn_pcd = fetchDynamicPlyKITTI360(dyn_ply_path, visible_only=False)
-    # except:
-    #     pcd = None
-    #     dyn_pcd = None
+    
     scene_info = SceneInfo(point_cloud=pcd,
                            dyn_point_cloud=dyn_pcd,
                            train_cameras=train_cam_infos,
