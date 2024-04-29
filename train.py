@@ -602,7 +602,6 @@ def training_report(iteration, testing_iterations, scene : Scene, all_bboxes, ga
                 wandb.log({ config['name'] + '/loss_viewpoint - l1_loss': l1_test, 
                             config['name'] + '/loss_viewpoint - psnr': psnr_test}, 
                             step=iteration) 
-        import pdb; pdb.set_trace()               
         
         torch.cuda.empty_cache()
 
