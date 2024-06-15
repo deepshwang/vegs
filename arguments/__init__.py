@@ -103,9 +103,9 @@ class OptimizationParams(ParamGroup):
 
 class KITTI360DataParams(ParamGroup):
     def __init__(self, parser):
-        self.start_frame = 1980
-        self.end_frame= 2295
-        self.seq = "2013_05_28_drive_0000_sync"
+        self.start_frame = 3972
+        self.end_frame= 4258
+        self.seq = "2013_05_28_drive_0009_sync"
         self.exclude_lidar = False
         self.exclude_colmap = False
         self.colmap_data_type = '_processed'

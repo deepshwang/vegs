@@ -155,15 +155,16 @@ By default, the script will train fine-tuned models for all scene segments liste
 To train VEGS for a scene segment of interest, run the following command.
 
 ```
-bash bash_scripts/train_kitti360.sh ${GPU_NUM} ${SEQUENCE} ${START_FRAME} ${END_FRAME} ${EXPERIMENT_NOTE}
+bash bash_scripts/train_kitti360.sh ${GPU_NUM} ${DATA_PATH} ${SEQUENCE} ${START_FRAME} ${END_FRAME} ${EXPERIMENT_NOTE}
 ```
 
 | Parameter | Description | Default |
 | :-------: | :--------: | :--------: |
 | `${GPU_NUM}`  | Index of GPU to use.|  `0` |
-| `${SEQUENCE}`  | Index of sequence to train | `0006`|
-| `${START_FRAME}`  | Start frame number of the frame segment | `9038`|
-| `${END_FRAME}`  | End frame number of the frame segment | `9223`|
+| `${DATA_PATH}`  | Data path |  `./KITTI-360` |
+| `${SEQUENCE}`  | Index of sequence to train | `0009`|
+| `${START_FRAME}`  | Start frame number of the frame segment | `3972`|
+| `${END_FRAME}`  | End frame number of the frame segment | `4258`|
 | `${EXP_NOTE}`  | Optional note for the run. </br> The note will be included to the folder that the model will be saved. | `""` |
 
 Trained model and images rendered on conventional and extrapolated cameras will be saved in `output`. 

@@ -1,8 +1,9 @@
 export CUDA_VISIBLE_DEVICES=${1:-0}
-SEQ=${2:-'0006'}
-START_FRAME=${3:-9038}
-END_FRAME=${4:-9223}
-NOTE=${5:-"test"}
+SRC_PATH=${2:-'./KITTI-360'}
+SEQ=${3:-'0006'}
+START_FRAME=${4:-9038}
+END_FRAME=${5:-9223}
+NOTE=${6:-"test"}
 
 python train.py -s /home/nas4_dataset/3D/KITTI-360 \
                 --seq 2013_05_28_drive_${SEQ}_sync \
