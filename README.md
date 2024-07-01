@@ -128,7 +128,7 @@ We use <a href="https://github.com/EPFL-VILAB/omnidata">omnidata</a> for monocul
 bash bash_scripts/normal_preprocess_kitti360.sh ${GPU_NUM} ${KITTI360_DIR}
 ```
 
-### 4. Prepare LoRA training images
+### 4-1. Prepare training images & Fine-tune with LoRA
 To prepare dataset for LoRA training, run the following command.
 ```
 bash bash_scripts/lora_preprocess_kitti360.sh
@@ -137,12 +137,6 @@ This will prepare square-cropped dataset and save them into `lora/data/kitti360`
 
 By default, this will prepare images for scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`, which includes scene fragements where vehicles are the only dynamic objects in the scene (as our method cannot handle topologically-varying dynamic objects such as walking people). You may change the text file to only process the scene segment of interest.
 
-
-
-
-## Training
-
-### 0. Fine-tune Stable-Diffusion model with LoRA.
 We use <a href="https://github.com/huggingface/diffusers">diffusers</a> to train Stable-Diffusion with LoRA. To train, run the following command.
 
 ```
@@ -151,7 +145,12 @@ bash bash_scripts/lora_train_kitti360.sh ${GPU_NUM}
 
 By default, the script will train fine-tuned models for all scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`. 
 
-### 1. Train VEGS 
+
+### 4-1. Prepare training images & Fine-tune with LoRA
+
+
+## Training
+
 To train VEGS for a scene segment of interest, run the following command.
 
 ```
