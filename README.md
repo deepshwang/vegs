@@ -128,7 +128,7 @@ We use <a href="https://github.com/EPFL-VILAB/omnidata">omnidata</a> for monocul
 bash bash_scripts/normal_preprocess_kitti360.sh ${GPU_NUM} ${KITTI360_DIR}
 ```
 
-### 4-1. Prepare training images & Fine-tune with LoRA
+### 4-1. **EITHER** Prepare training images & Fine-tune with LoRA
 To prepare dataset for LoRA training, run the following command.
 ```
 bash bash_scripts/lora_preprocess_kitti360.sh
@@ -146,7 +146,9 @@ bash bash_scripts/lora_train_kitti360.sh ${GPU_NUM}
 By default, the script will train fine-tuned models for all scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`. 
 
 
-### 4-1. Prepare training images & Fine-tune with LoRA
+### 4-2. **OR** download pre-trained LoRA weights for KITTI-360.
+
+You may download pre-trained LoRA weights from <a href="https://drive.google.com/file/d/1i2XP2QUIUsxHN1Gg9epMEpS4BUalN0JC/view?usp=sharing">here</a> and unzip them under `lora/models/kitti360`. Again, we only provide models for scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`.
 
 
 ## Training
