@@ -89,7 +89,7 @@ conda activate vegs
 
 We provide training pipeline for <a href="https://www.cvlibs.net/datasets/kitti-360/">KITTI-360</a> Dataset. Pleaser refer to the data <a href="https://www.cvlibs.net/datasets/kitti-360/documentation.php">documentation</a> for details on the data structure. 
 
-### 1. Download Data
+### [1] Download Data
 You may register and log-in for <a href="https://www.cvlibs.net/datasets/kitti-360/">KITTI-360</a> page. Then, please download the following data.
 
 ```
@@ -113,7 +113,9 @@ KITTI-360
 ```
 **Since each sequence is too large to construct as a single scene model, we use scene segment pre-divided by frames, `start_frame` and `end_frame`.**
 
-### 2. Triangulate 3D points from training images and known camera poses using COLMAP.
+<br>
+
+### [2-1] ***EITHER*** Triangulate 3D points from training images and known camera poses using COLMAP.
 In addition to the LiDAR map, we use points triangulated from training images. To prepare the points, run the following command. (COLMAP must be installed to run)
 ```
 python triangulate.py --data_dir ${KITTI360_DIR}
@@ -121,14 +123,29 @@ python triangulate.py --data_dir ${KITTI360_DIR}
 
 where `${KITTI360_DIR}` is the KITTI-360 data directory. By default, the script will triangulate for all scene sgements in data, and save the results in `data_3d_colmap` and `data_3d_colmap_processed` folder under the KITTI-360 data directory. 
 
-### 3. Prepare Monocular Surface Normal Estimations
+### [2-2] ***OR*** Download Triangluated points for KITTI-360.
+
+You may download the points from <a href="https://drive.google.com/file/d/18jL5VHpU6dhko6RgKYUSVH8XtlR8RPHn/view?usp=sharing">here</a> and save them into `${KITTI360_DIR}/data_3d_colmap_processed`
+
+
+<br>
+
+### [3-1] ***EITHER*** Prepare Monocular Surface Normal Estimations
 We use <a href="https://github.com/EPFL-VILAB/omnidata">omnidata</a> for monocular surface normal estimation. Please download and place the pretrained model in `omnidata/pretrained_models/omnidata_dpt_normal_v2.ckpt`. Running the following scripts will save monocular surface normal estimations in `data_2d_normal_omnidata_all` under the KITTI-360 data directory. To prepare the data, run
 
 ```
 bash bash_scripts/normal_preprocess_kitti360.sh ${GPU_NUM} ${KITTI360_DIR}
 ```
 
-### 4. Prepare LoRA training images
+### [3-2] ***OR*** Download Monocular Surface Normal Estimations
+
+You may download pre-calculated monocular surface normal estimations from <a href="https://drive.google.com/file/d/1uWLGO5hprrCMz5wggMktEEb0yeVwMA9O/view?usp=sharing">here</a>, and save them into `${KITTI360_DIR}/data_2d_normal_omnidata_all`. 
+
+***Note that the file only contains a frame segment from `3972` to `4258` in sequence `0009` as files for all sequences are too large.***
+
+<br>
+
+### [4-1] ***EITHER*** Prepare training images & Fine-tune with LoRA
 To prepare dataset for LoRA training, run the following command.
 ```
 bash bash_scripts/lora_preprocess_kitti360.sh
@@ -137,12 +154,6 @@ This will prepare square-cropped dataset and save them into `lora/data/kitti360`
 
 By default, this will prepare images for scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`, which includes scene fragements where vehicles are the only dynamic objects in the scene (as our method cannot handle topologically-varying dynamic objects such as walking people). You may change the text file to only process the scene segment of interest.
 
-
-
-
-## Training
-
-### 0. Fine-tune Stable-Diffusion model with LoRA.
 We use <a href="https://github.com/huggingface/diffusers">diffusers</a> to train Stable-Diffusion with LoRA. To train, run the following command.
 
 ```
@@ -151,7 +162,15 @@ bash bash_scripts/lora_train_kitti360.sh ${GPU_NUM}
 
 By default, the script will train fine-tuned models for all scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`. 
 
-### 1. Train VEGS 
+
+### [4-2] ***OR*** download pre-trained LoRA weights for KITTI-360.
+
+You may download pre-trained LoRA weights from <a href="https://drive.google.com/file/d/1i2XP2QUIUsxHN1Gg9epMEpS4BUalN0JC/view?usp=sharing">here</a> and unzip them under `lora/models/kitti360`. Again, we only provide models for scene segments listed in `lora/data/kitti360/2013_05_28_drive_train_dynamic_vehicle_human_track_num_vehicles.txt`.
+
+<br>
+
+## Training
+
 To train VEGS for a scene segment of interest, run the following command.
 
 ```
