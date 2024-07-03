@@ -78,8 +78,7 @@ def training(dataset, opt, pipe, cfg_kitti, cfg_box, cfg_sd, testing_iterations,
     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
     
     # Initialize Gaussian covariances with monocular normals
-    if opt.normal_initialization:        
-        gaussians = initialize_gaussians_with_window_normals(gaussians, scene, pipe, background)
+    gaussians = initialize_gaussians_with_window_normals(gaussians, scene, pipe, background)
 
     for instanceId in scene.gaussian_box_models.keys():
         scene.gaussian_box_models[instanceId].training_setup(opt)
@@ -92,9 +91,8 @@ def training(dataset, opt, pipe, cfg_kitti, cfg_box, cfg_sd, testing_iterations,
             scene.gaussian_box_models[instanceId].restore(model_params, opt)
 
     # Load diffusion regularizer
-    if cfg_sd.reg_with_diffusion:
-        from loss import LoRADiffusionRegularizer
-        sd_reg = LoRADiffusionRegularizer(dataset, cfg_kitti, cfg_sd, opt.iterations)
+    from loss import LoRADiffusionRegularizer
+    sd_reg = LoRADiffusionRegularizer(dataset, cfg_kitti, cfg_sd, opt.iterations)
 
 
     if cfg_sd.perceptual_loss:
@@ -166,35 +164,33 @@ def training(dataset, opt, pipe, cfg_kitti, cfg_box, cfg_sd, testing_iterations,
         loss = (1.0 - lambda_dssim) * Ll1 + lambda_dssim * (1.0 - ssim(image, gt_image))
         
         # Normal guidance loss
-        if opt.do_normal_guidance:
-            Lng = loss_normal_guidance(viewpoint_cam, cov_quat, cov_scale)
-            loss += opt.lambda_dnormal * Lng
+        Lng = loss_normal_guidance(viewpoint_cam, cov_quat, cov_scale)
+        loss += opt.lambda_dnormal * Lng
 
 
         # Diffusion guidance loss
-        if cfg_sd.reg_with_diffusion:
-            if iteration > cfg_sd.start_guiding_from_iter and iteration < cfg_sd.end_guiding_at_iter:
-                # [1] Augment viewpoints
-                viewpoint_cam_aug, yaw, pitch, t_y, aug_dir = augmentCamera(viewpoint_cam, cfg_sd)
-                
-                # [2] Render augmented viewpoints
-                image_aug = render(viewpoint_cam_aug, gaussians, pipe, background)["render"]
+        if iteration > cfg_sd.start_guiding_from_iter and iteration < cfg_sd.end_guiding_at_iter:
+            # [1] Augment viewpoints
+            viewpoint_cam_aug, yaw, pitch, t_y, aug_dir = augmentCamera(viewpoint_cam, cfg_sd)
+            
+            # [2] Render augmented viewpoints
+            image_aug = render(viewpoint_cam_aug, gaussians, pipe, background)["render"]
 
-                # [3] Random crop renderings from augmented view.
-                h_aug, w_aug = image_aug.shape[1], image_aug.shape[2]
-                if cfg_sd.global_crop:
-                    w_crop_start = randint(0, w_aug-h_aug)
-                else:
-                    if aug_dir == -1: # Look right
-                        w_crop_start = randint((w_aug-h_aug)//2, w_aug-h_aug)
-                    else: # Look left
-                        w_crop_start = randint(0, (w_aug-h_aug) // 2)
+            # [3] Random crop renderings from augmented view.
+            h_aug, w_aug = image_aug.shape[1], image_aug.shape[2]
+            if cfg_sd.global_crop:
+                w_crop_start = randint(0, w_aug-h_aug)
+            else:
+                if aug_dir == -1: # Look right
+                    w_crop_start = randint((w_aug-h_aug)//2, w_aug-h_aug)
+                else: # Look left
+                    w_crop_start = randint(0, (w_aug-h_aug) // 2)
 
-                image_aug = image_aug[None, ..., w_crop_start:w_crop_start+h_aug]
+            image_aug = image_aug[None, ..., w_crop_start:w_crop_start+h_aug]
 
-                # [3] Compute guidance loss
-                loss_guidance = sd_reg(image_aug, iteration)
-                loss += loss_guidance
+            # [3] Compute guidance loss
+            loss_guidance = sd_reg(image_aug, iteration)
+            loss += loss_guidance
 
 
         loss.backward()
@@ -227,7 +223,7 @@ def training(dataset, opt, pipe, cfg_kitti, cfg_box, cfg_sd, testing_iterations,
             if opt.do_normal_guidance:
                 scalar_kwargs["normal_loss"] = Lng.item()
 
-            if cfg_sd.reg_with_diffusion and iteration > cfg_sd.start_guiding_from_iter and iteration < cfg_sd.end_guiding_at_iter:
+            if iteration > cfg_sd.start_guiding_from_iter and iteration < cfg_sd.end_guiding_at_iter:
                 scalar_kwargs[f"{cfg_sd.guidance_mode}_loss_guidance"] = loss_guidance.item()
 
                 # Record box refinment information 

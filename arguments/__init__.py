@@ -96,8 +96,6 @@ class OptimizationParams(ParamGroup):
         self.densify_until_iter_box = 50_000 # 50_000 CHANGE
         self.densify_grad_threshold = 0.0002
         
-        self.do_normal_guidance = False
-        self.normal_initialization = False 
         self.lambda_dnormal = 1e-3 #1e-3 #1e-4 #0.001
         super().__init__(parser, "Optimization Parameters")
 
@@ -123,8 +121,7 @@ class BoxModelParams(ParamGroup):
 class SDRegularizationParams(ParamGroup):
     def __init__(self, parser):
         # Training options
-        self.reg_with_diffusion = False 
-        self.guidance_mode = "score-matching" # options: score-matching, sds
+        self.guidance_mode = "score-matching"
         self.start_guiding_from_iter = 97_500
         self.end_guiding_at_iter = 100_000
         self.sd_image_size = 512
