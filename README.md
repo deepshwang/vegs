@@ -32,14 +32,12 @@
 
 <br>
 
-<br>
 
 <font size="50">
   <b>ECCV'24</b>
 </font>
 
 
-<br>
 
 <br>
 
