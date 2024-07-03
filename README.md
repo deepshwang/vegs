@@ -2,6 +2,8 @@
 
 # VEGS: View-Extrapolation of Urban Scenes in 3D Gaussian Splatting using Learned Priors
 
+## ECCV'24
+
 <font size="6">
 <a href="https://deepshwang.github.io/" style="font-size:100%;">Sungwon Hwang</a>*<sup>1</sup>&emsp;
 <a href="https://emjay73.github.io" style="font-size:100%;">Min-Jung Kim</a>*<sup>1</sup>&emsp;
