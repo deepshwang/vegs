@@ -32,13 +32,6 @@
 
 <br>
 
-
-<font size="50">
-  <b>ECCV'24</b>
-</font>
-
-
-
 <br>
 
 <img src="./assets/teaser.gif" alt="teaser.gif" width="1000"/> <br>
