@@ -26,7 +26,7 @@
 <br>
 
 <font size="4">
-| <a href="https://vegs.github.io">Project Page</a> | <a href="https://arxiv.org/abs/2311.12775">arXiv</a> | <a href="https://github.com/deepshwang/vegs">Code</a> |
+| <a href="https://vegs3d.github.io">Project Page</a> | <a href="https://arxiv.org/abs/2311.12775">arXiv</a> | <a href="https://github.com/deepshwang/vegs">Code</a> |
 </font>
 
 <br>
