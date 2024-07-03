@@ -1,6 +1,6 @@
 <div align="center">
 
-# VEGS: View-Extrapolation of Urban Scenes in 3D Gaussian Splatting using Learned Priors
+# [ECCV'24] VEGS: View-Extrapolation of Urban Scenes in 3D Gaussian Splatting using Learned Priors
 
 
 <font size="6">
