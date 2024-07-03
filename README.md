@@ -1,11 +1,7 @@
 <div align="center">
 
 # VEGS: View-Extrapolation of Urban Scenes in 3D Gaussian Splatting using Learned Priors
-<br>
-<font size="20">
-<b>ECCV'24</b>
-</font>
-<br>
+
 
 <font size="6">
 <a href="https://deepshwang.github.io/" style="font-size:100%;">Sungwon Hwang</a>*<sup>1</sup>&emsp;
@@ -33,6 +29,13 @@
 <font size="4">
 | <a href="https://vegs3d.github.io">Project Page</a> | <a href="https://arxiv.org/abs/2311.12775">arXiv</a> | <a href="https://github.com/deepshwang/vegs">Code</a> |
 </font>
+
+<br>
+
+<font size="20">
+<b>ECCV'24</b>
+</font>
+
 
 <br>
 
