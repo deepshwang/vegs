@@ -4,8 +4,8 @@
 
 <font size="6">
 <a href="https://deepshwang.github.io/" style="font-size:100%;">Sungwon Hwang</a>*<sup>1</sup>&emsp;
-<a href="https://vegs.github.io" style="font-size:100%;">Min-Jung Kim</a>*<sup>1</sup>&emsp;
-<a href="https://vegs.github.io" style="font-size:100%;">Taewoong Kang</a><sup>1</sup>&emsp;
+<a href="https://emjay73.github.io" style="font-size:100%;">Min-Jung Kim</a>*<sup>1</sup>&emsp;
+<a href="https://keh0t0.github.io" style="font-size:100%;">Taewoong Kang</a><sup>1</sup>&emsp;
 <a href="https://vegs.github.io" style="font-size:100%;">Jayeon Kang</a><sup>2</sup>&emsp;
 <a href="https://sites.google.com/site/jaegulchoo/" style="font-size:100%;">Jaegul Choo</a><sup>1</sup>&emsp;
 </font>
