@@ -220,8 +220,7 @@ def training(dataset, opt, pipe, cfg_kitti, cfg_box, cfg_sd, testing_iterations,
             scalar_kwargs["loss"] = loss.item()
             scalar_kwargs["loss_ema"] = ema_loss_for_log
             scalar_kwargs["l1_loss"] = Ll1.item()
-            if opt.do_normal_guidance:
-                scalar_kwargs["normal_loss"] = Lng.item()
+            scalar_kwargs["normal_loss"] = Lng.item()
 
             if iteration > cfg_sd.start_guiding_from_iter and iteration < cfg_sd.end_guiding_at_iter:
                 scalar_kwargs[f"{cfg_sd.guidance_mode}_loss_guidance"] = loss_guidance.item()
