@@ -5,7 +5,7 @@ START_FRAME=${4:-9038}
 END_FRAME=${5:-9223}
 NOTE=${6:-"test"}
 
-python train.py -s /home/nas4_dataset/3D/KITTI-360 \
+python train.py -s ${SRC_PATH} \
                 --seq 2013_05_28_drive_${SEQ}_sync \
                 --start_frame ${START_FRAME}\
                 --end_frame ${END_FRAME} \
