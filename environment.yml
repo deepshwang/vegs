@@ -18,7 +18,7 @@ dependencies:
     - submodules/simple-knn
     - open3d
     - git+https://github.com/autonomousvision/kitti360Scripts.git
-    - diffuser==0.14.0
+    - diffusers==0.14.0
     - transformers
     - accelerate
     - datasets
